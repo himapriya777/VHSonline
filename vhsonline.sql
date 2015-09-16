@@ -74,6 +74,10 @@ INSERT INTO `products` (`product_id`, `product_cat`, `product_name`, `product_pr
 (9, 5, 'bbay gear', 50, 90, '<p>tst baby&nbsp;</p>', 'tz-428_100.jpg', 'baby gear'),
 (10, 2, 'baby foot wear shoes', 10, 1, '<p>asas</p>', 'beautiful-flowers-cellphone-wallpapers-6-pclayer.jpg', 'asas');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE IF NOT EXISTS `cart` (
+  `pro_id` int(10) NOT NULL,
+  `ip_add` varchar(255) NOT NULL,
+  `qty` int(10) NOT NULL,
+  PRIMARY KEY (`pro_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
