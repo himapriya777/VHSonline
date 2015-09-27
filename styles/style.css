@@ -175,6 +175,12 @@ height:40px;
 background:#808080;
 color:white;
 }
+
+.row {
+    border-bottom:1px solid black;
+}
+
+
 #footer{
 width:1000px;
 height:40px;

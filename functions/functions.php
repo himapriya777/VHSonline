@@ -202,7 +202,7 @@ function cart()
 	else
 	{   
 		
-		$insert_pro = "insert into cart(pro_id,ip_add) values('$pro_id','$ip')";
+		$insert_pro = "insert into cart(pro_id,ip_add,qty) values('$pro_id','$ip','1')";
 		$run_pro = mysqli_query($con,$insert_pro);
 		
 		echo "<script>window.open('index.php','_self')</script>";
@@ -239,7 +239,7 @@ function total_items()
 }
 
 
-//getting the total price from the cart
+//getting the total price from the cart table
 function total_price()
 {	
 	global $con;
