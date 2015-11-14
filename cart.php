@@ -37,16 +37,7 @@ include("functions/functions.php");
 	</div>
 	
 	<div id="content_area"> 
-	<div id="shopping_cart"> 
 	
-	<span style="float:right; font-size:18px;padding:5px;line-height:25px">
-	Welcome Guest! &nbsp&nbsp
-	<b style="color:yellow">Shopping Cart -</b> 
-	Total Items: <?php total_items();?>&nbsp&nbsp
-	Total Price: $<?php total_price();?> &nbsp&nbsp
-	</span>
-	
-	</div>
 	<?php cart(); ?>
 		<div id="products_box">
 		
@@ -79,14 +70,14 @@ include("functions/functions.php");
 	{
 		$pro_id =$row_cart['pro_id'];
 		//$qty_no=$row_cart['qty'];
-		$select_pro_price="select * from products where product_id='$pro_id'";
+		$select_pro_price="select * from products where pid='$pro_id'";
 		$run_pro_price = mysqli_query($con,$select_pro_price);
 		while($row_pro_price=mysqli_fetch_array($run_pro_price))
 		{
-		$product_price =array($row_pro_price['product_price']);
-		$product_name=$row_pro_price['product_name'];
-		$product_image=$row_pro_price['product_image'];
-		$item_price = $row_pro_price['product_price'];
+		$product_price =array($row_pro_price['pprice']);
+		$product_name=$row_pro_price['pname'];
+		$product_image=$row_pro_price['pimage'];
+		$item_price = $row_pro_price['pprice'];
 		$values=array_sum($product_price);
 		$total+=$values;		
 	

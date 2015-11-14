@@ -36,17 +36,7 @@ include("functions/functions.php");
 	</div>
 	
 	<div id="content_area"> 
-	<div id="shopping_cart"> 
 	
-	<span style="float:right; font-size:18px;padding:5px;line-height:25px">
-	Welcome Guest! &nbsp&nbsp
-	<b style="color:yellow">Shopping Cart -</b> 
-	Total Items: <?php total_items();?>&nbsp&nbsp
-	Total Price: $<?php total_price();?> &nbsp&nbsp
-	<a href="cart.php" style="color:yellow">Go to Cart</a>
-	</span>
-	
-	</div>
 	<?php cart(); ?>
 		<div id="products_box">
 		<?php getPro(); ?>

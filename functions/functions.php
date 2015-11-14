@@ -7,14 +7,14 @@ include("includes/db.php");
 function getCats()
 {
 	global $con;
-	$get_cats="select * from categories";	
+	$get_cats="select * from category";	
 
 	$run_cats=mysqli_query($con,$get_cats);	
 	
 	while($row_cats=mysqli_fetch_array($run_cats))
 	{
-		$cat_id=$row_cats['cat_id'];
-		$cat_name=$row_cats['cat_name'];
+		$cat_id=$row_cats['catid'];
+		$cat_name=$row_cats['catname'];
 		
 		echo "<li><a href='index.php?cat_id=$cat_id'>$cat_name</a></li>";
 	}
@@ -25,16 +25,16 @@ function getPro()
 {  	global $con;
 	if(!isset($_GET['cat_id']))
 	{
-	$get_pro = "select * from products order by RAND() LIMIT 0,6"; // to show random 6 on main page
+	$get_pro = "select * from product order by RAND() LIMIT 0,6"; // to show random 6 on main page
 	$run_pro = mysqli_query($con, $get_pro);
 	
 	while($row_pro=mysqli_fetch_array($run_pro))
 	{
-	$pro_id = $row_pro['product_id'];
-    $pro_cat = $row_pro['product_cat'];
-	$pro_name= $row_pro['product_name'];
-	$pro_price = $row_pro['product_price'];
-	$pro_image = $row_pro['product_image'];
+	$pro_id = $row_pro['pid'];
+    //$pro_cat = $row_pro['pcat'];
+	$pro_name= $row_pro['pname'];
+	$pro_price = $row_pro['pprice'];
+	$pro_image = $row_pro['pimage'];
 	$pro_name = ucwords($pro_name);
 	echo "
 		<div id='single_product'>
@@ -54,7 +54,7 @@ function getPro()
 	if(isset($_GET['cat_id']))
 	{
 	$cat_id = $_GET['cat_id'];
-	$get_cat_pro = "select * from products where product_cat='$cat_id'";
+	$get_cat_pro = "select * from product where pid in (select pid from product_has_category where catid='$cat_id');";
 	$run_cat_pro = mysqli_query($con, $get_cat_pro);
 	$count_cats =mysqli_num_rows($run_cat_pro);
 	
@@ -66,11 +66,11 @@ function getPro()
 	}
 	while($row_cat_pro=mysqli_fetch_array($run_cat_pro))
 	{
-	$pro_id = $row_cat_pro['product_id'];
-    $pro_cat = $row_cat_pro['product_cat'];
-	$pro_name= $row_cat_pro['product_name'];
-	$pro_price = $row_cat_pro['product_price'];
-	$pro_image = $row_cat_pro['product_image'];
+	$pro_id = $row_cat_pro['pid'];
+    //$pro_cat = $row_cat_pro['pcat'];
+	$pro_name= $row_cat_pro['pname'];
+	$pro_price = $row_cat_pro['pprice'];
+	$pro_image = $row_cat_pro['pimage'];
 	$pro_name = ucwords($pro_name);
 	
 	
@@ -96,16 +96,16 @@ function getPro()
 function get_Allproducts()
 {
 	global $con;
-	$get_pro = "select * from products";
+	$get_pro = "select * from product";
 	$run_pro = mysqli_query($con, $get_pro);
 	
 	while($row_pro=mysqli_fetch_array($run_pro))
 	{
-	$pro_id = $row_pro['product_id'];
-    $pro_cat = $row_pro['product_cat'];
-	$pro_name= $row_pro['product_name'];
-	$pro_price = $row_pro['product_price'];
-	$pro_image = $row_pro['product_image'];
+	$pro_id = $row_pro['pid'];
+    //$pro_cat = $row_pro['product_cat'];
+	$pro_name= $row_pro['pname'];
+	$pro_price = $row_pro['pprice'];
+	$pro_image = $row_pro['pimage'];
 	$pro_name = ucwords($pro_name);
 	echo "
 		<div id='single_product'>
@@ -130,7 +130,7 @@ function get_searchProducts()
 	if(isset($_GET['search']))
 	{
 	$search_query=$_GET['user_query'];
-	$get_pro = "select * from products where product_keywords like '%$search_query%' ";
+	$get_pro = "select * from product where pkeyword like '%$search_query%' ";
 	$run_pro = mysqli_query($con, $get_pro);
 	$count_cats =mysqli_num_rows($run_pro);
 	

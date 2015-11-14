@@ -45,17 +45,17 @@ include("functions/functions.php");
 			$product_id = $_GET['pro_id'];
 			
 			
-			$get_pro = "select * from products where product_id='$product_id '";
+			$get_pro = "select * from product where pid='$product_id '";
 			$run_pro = mysqli_query($con, $get_pro);
 	
 			while($row_pro=mysqli_fetch_array($run_pro))
 			{
-			$pro_id = $row_pro['product_id'];
-			$pro_name= $row_pro['product_name'];
-			$pro_price = $row_pro['product_price'];
-			$pro_image = $row_pro['product_image'];
+			$pro_id = $row_pro['pid'];
+			$pro_name= $row_pro['pname'];
+			$pro_price = $row_pro['pprice'];
+			$pro_image = $row_pro['pimage'];
 			$pro_name = ucwords($pro_name);
-			$pro_desc =$row_pro['product_desc'];
+			$pro_desc =$row_pro['pdescription'];
 			echo "
 			<div id='single_product'>
 			<h3> $pro_name </h3>
