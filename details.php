@@ -63,7 +63,7 @@ include("functions/functions.php");
 			<p><b>Price $$pro_price</b></p>
 			<p>$pro_desc</p>
 			<a href='index.php' style='float:left;'>Go Back</a>
-			<a href='index.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
+			<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 			</div>";
 		}
 			

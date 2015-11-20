@@ -1,6 +1,8 @@
 <!DOCTYPE>
 <?php
+session_start();
 include("functions/functions.php");
+include("includes/db.php");
 ?>
 <html>
 	<head>
@@ -39,16 +41,28 @@ include("functions/functions.php");
 	<div id="shopping_cart"> 
 	
 	<span style="float:right; font-size:18px;padding:5px;line-height:25px">
-	Welcome Guest! &nbsp&nbsp
-	<b style="color:yellow">Shopping Cart -</b> 
+	<!--Welcome Guest! &nbsp&nbsp
+	 <b style="color:yellow">Shopping Cart -</b> 
 	Total Items: <?php total_items();?>&nbsp&nbsp
-	Total Price: $<?php total_price();?> &nbsp&nbsp
-	<a href="cart.php" style="color:yellow">Go to Cart</a>
+	Total Price: $<?php total_price();?> &nbsp&nbsp 
+	<a href="cart.php" style="color:yellow">Go to Cart</a>-->
 	</span>
 	
 	</div>
 	<?php cart(); ?>
 		<div id="products_box">
+	<?php 
+	
+	 if(!isset($_SESSION['user_name']))
+		{
+			
+			include("login.php");
+		}
+		else
+		{
+			include("payment.php");
+		}
+	?>
 		
 	</div>
 

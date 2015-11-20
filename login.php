@@ -1,52 +1,57 @@
-<!DOCTYPE>
 <?php
-include("functions/functions.php");
+include("includes/db.php");
 ?>
-<html>
-	<head>
-		<title> VHS Online Store</title>
+<div>
 	
-	<link rel="stylesheet" href="styles/style.css" media="all"/>
-		<link rel="stylesheet" href="styles/bootstrap.css" media="all"/>
-	<LINK REL="SHORTCUT ICON" HREF="images/vhs_icon.png"/>
-	</head>
-	
-<body>
-	<!-- Main container starts here -->
-	<div class="main_wrapper">
-	
-	<!-- Header starts here -->
-	<?php include("includes/header.html"); ?>
-	<!-- Header ends here -->	
-	
-	
+		<form action="" method="post" accept-charset="UTF-8">
+		
+		<table width="500" align="center" >
+		<tr align="center">
+		<td colspan=4><h2> Login or Register to Purchase </h2></td>
+		
+		</tr>
+		<tr>
+		<td align="right"><b>User Name:</b></td>
+		<td><input type="text" name="uname" placeholder="Enter Username" required>
+		 </td>
+		</tr>
+		 
+		 <tr>
+		 <td align="right"><b>Password:</b></td>
+		 <td><input type="password" name="pwd" placeholder="Enter Password" required></td>
+		 </tr>
+		 
+		 <tr align="center">
+		 <td colspan="4"><input type="submit" name="login" value="Login"/></td>
+		 </tr>
+		
+</table>	
 
-	<!-- Content wrapper starts here -->
-	<div class="content_wrapper">
-	
-	<div id="login_area"> 
-		<form action="verify.php" method="post" accept-charset="UTF-8">
-		  <div class="form-group">
-			<label for="username">Username</label>
-			<input type="username" class="form-control" id="username" name="username" placeholder="Username">
-		  </div>
-		  <div class="form-group">
-			<label for="pasword">Password</label>
-			<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-		  </div>
-		  <div class="checkbox">
-			<label>
-			  <input type="checkbox"> Remember me
-			</label>
-		  </div>
-		  <button type="submit" class="btn btn-default">Submit</button>
+     <h2 style="float:center;padding:10px;"><a href="user_reg.php"> New User? Register Here</a>	</h2>
 		</form>
-	</div>
-	
-	<!-- Content wrapper ends here -->
-	<?php include("includes/footer.html"); ?>
-	</div>
-	<!-- Main container ends here -->
+<?php		
+	if(isset($_POST['login']))
+	{
+		$username=$_POST['uname'];
+		$pwd=$_POST['pwd'];
+		$salt="-45dfeHKyu349@-/klF21-14JkUP/4";
+	    $hashedpwd=md5($salt.$pwd);
+		
+		$select_user = "select * from user where uusername='$username' and upassword='$pwd'";
+		
+		$run_user=mysqli_query($con,$select_user);
+		$check_user =mysqli_num_rows($run_user);
+		if($check_user==0)
+		{
+			echo "<script>alert('Username or Password is incorrect')</script>";
+		}
+		else
+		{
+			$_SESSION['user_name']=$username;
+			echo "<script>alert('You logged in successfully')</script>";
+		echo "<script>window.open('checkout.php','_self')</script>";
+		}
+	}
+		?>
+</div>
 
-</body>
-</html>

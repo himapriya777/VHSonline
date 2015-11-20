@@ -1,6 +1,6 @@
 <?php
 
-$con=$con=mysqli_connect("localhost","root","","cs4342team8fa15");
+$con=mysqli_connect("localhost","root","","cs4342team8fa15");
 
 if(mysqli_connect_errno())
 {

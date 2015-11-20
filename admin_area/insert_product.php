@@ -106,7 +106,7 @@ include("../includes/db.php");
 		
 		$insert_prod=mysqli_query($con,$insert_products);
 		$get_pid_query = "select pid from product where pname='$product_name'";
-		echo $get_pid_query;
+		//echo $get_pid_query;
 		$get_pid=mysqli_query($con,$get_pid_query);
 		
 		//$run_pro = mysqli_query($con, $get_pro);

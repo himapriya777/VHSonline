@@ -7,12 +7,14 @@ include("includes/db.php");
 function getCats()
 {
 	global $con;
+	
 	$get_cats="select * from category";	
 
 	$run_cats=mysqli_query($con,$get_cats);	
 	
 	while($row_cats=mysqli_fetch_array($run_cats))
 	{
+		
 		$cat_id=$row_cats['catid'];
 		$cat_name=$row_cats['catname'];
 		
@@ -42,7 +44,7 @@ function getPro()
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
 		<p><b>Price $$pro_price</b></p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
-		<a href='index.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
+		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
 
 	";
@@ -80,7 +82,7 @@ function getPro()
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
 		<p><b>Price $$pro_price</b></p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
-		<a href='index.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
+		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
     
 	";
@@ -113,7 +115,7 @@ function get_Allproducts()
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
 		<p><b>Price $$pro_price</b></p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
-		<a href='index.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
+		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
 
 	";
@@ -145,11 +147,12 @@ function get_searchProducts()
 	}
 	while($row_pro=mysqli_fetch_array($run_pro))
 	{
-	$pro_id = $row_pro['product_id'];
-    $pro_cat = $row_pro['product_cat'];
-	$pro_name= $row_pro['product_name'];
-	$pro_price = $row_pro['product_price'];
-	$pro_image = $row_pro['product_image'];
+	
+	$pro_id = $row_pro['pid'];
+    //$pro_cat = $row_pro['product_cat'];
+	$pro_name= $row_pro['pname'];
+	$pro_price = $row_pro['pprice'];
+	$pro_image = $row_pro['pimage'];
 	$pro_name = ucwords($pro_name);
 	echo "
 		<div id='single_product'>
@@ -157,7 +160,7 @@ function get_searchProducts()
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
 		<p><b>Price $$pro_price</b></p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
-		<a href='index.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
+		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
 
 	";
@@ -191,7 +194,7 @@ function cart()
 	
 	//check and allow one product type use can add once
 
-	$check_pro = "select * from cart where ip_add='$ip' AND pro_id='$pro_id'";
+	$check_pro = "select * from cart";
 		
 	$run_check = mysqli_query($con,$check_pro);
 	$count =mysqli_num_rows($run_check);
@@ -202,10 +205,10 @@ function cart()
 	else
 	{   
 		
-		$insert_pro = "insert into cart(pro_id,ip_add,qty) values('$pro_id','$ip','1')";
+		$insert_pro = "insert into cart(pid,cquantity) values('$pro_id','1')";
 		$run_pro = mysqli_query($con,$insert_pro);
 		
-		echo "<script>window.open('index.php','_self')</script>";
+		echo "<script>window.open('cart.php','_self')</script>";
 	}
 }
 }
@@ -219,7 +222,7 @@ function total_items()
 	{
 		global $con;
 		$ip=getIp();
-		$get_items ="select * from cart where ip_add='$ip'";
+		$get_items ="select * from cart";
 		
 		$run_items=mysqli_query($con,$get_items);
 		$count_items=mysqli_num_rows($run_items);
@@ -229,7 +232,7 @@ function total_items()
 	else{ //if home page clicked after add to cart still need t be updated
 		global $con;
 		$ip=getIp();
-		$get_items ="select * from cart where ip_add='$ip'";
+		$get_items ="select * from cart";
 		
 		$run_items=mysqli_query($con,$get_items);
 		$count_items=mysqli_num_rows($run_items);
@@ -245,19 +248,19 @@ function total_price()
 	global $con;
 	$ip=getIp();
 	$total=0;
-	$select_cart_query ="select * from cart where ip_add='$ip'";
+	$select_cart_query ="select * from cart";
 	
 	$run_cart_query=mysqli_query($con,$select_cart_query);
 	
 	while($row_cart=mysqli_fetch_array($run_cart_query))
 	{
-		$pro_id =$row_cart['pro_id'];
+		$pro_id =$row_cart['pid'];
 		
-		$select_pro_price="select * from products where product_id='$pro_id'";
+		$select_pro_price="select * from product where pid='$pro_id'";
 		$run_pro_price = mysqli_query($con,$select_pro_price);
 		while($row_pro_price=mysqli_fetch_array($run_pro_price))
 		{
-		$product_price =array($row_pro_price['product_price']);
+		$product_price =array($row_pro_price['pprice']);
 		$values=array_sum($product_price);
 		$total+=$values;		
 		}

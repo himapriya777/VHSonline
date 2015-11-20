@@ -171,7 +171,7 @@ border:2px solid lightyellow;
 #shopping_cart
 {
 width:800px;
-height:40px;
+height:30px;
 background:#808080;
 color:white;
 }
@@ -179,6 +179,7 @@ color:white;
 .row {
     border-bottom:1px solid black;
 }
+
 
 #footer{
 width:1000px;
@@ -188,10 +189,16 @@ background:#85CECE;
 }
 
 #login_area{
-height:1000px;
-width:1000px;
-padding-top:15%;
-padding-right:5%;
-padding-left:5%;
+height:350px;
+width:400px;
+float:left;
 background:lightpink;
+}
+
+#login
+{
+width:800px;
+height:600px;
+background:#808080;
+color:black;
 }

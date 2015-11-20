@@ -20,8 +20,7 @@ include("functions/functions.php");
 	<!-- Header ends here -->	
 	
 	
-
-	<!-- Content wrapper starts here -->
+		<!-- Content wrapper starts here -->
 	<div class="content_wrapper">
 	
 	<div id="sidebar"> 
@@ -37,20 +36,29 @@ include("functions/functions.php");
 	</div>
 	
 	<div id="content_area"> 
+	<div id="shopping_cart"> 
 	
-	<?php cart(); ?>
-		<div id="products_box">
+	<span style="float:right; font-size:18px;padding:5px;line-height:25px">
+	<!--Welcome Guest! &nbsp&nbsp
+	 <b style="color:yellow">Shopping Cart -</b> 
+	Total Items: <?php total_items();?>&nbsp&nbsp
+	Total Price: $<?php total_price();?> &nbsp&nbsp 
+	<a href="cart.php" style="color:yellow">Go to Cart</a>-->
+	</span>
+	
+	</div>
+	<div id="products_box">
+		
 		
 		<form action="" method="post" enctype="mulipart/form-data">
 		
-		<table align="center" width="700" bgcolor="lightyellow">
+		<table align="center" width="700" bgcolor="lightyellow" height="300">
 		<tr align="center">
-		<th colspan=4><h2>Update or Checkout</h2>
+		<th colspan=4><h2>Checkout</h2>
 		</th>
 		</tr>
 		
 		<tr>
-		<th>Remove</th>
 		<th> Products</th>
 		<th>Quantity </th>
 		<th>Price</th>
@@ -59,18 +67,16 @@ include("functions/functions.php");
 		
 	<?php 
 	global $con;
-	$ip=getIp();
 	$total=0;
-	//$qty_no=0;
-	$select_cart_query ="select * from cart where ip_add='$ip'";
-	
-	$run_cart_query=mysqli_query($con,$select_cart_query);
-	
-	while($row_cart=mysqli_fetch_array($run_cart_query))
+	if(isset($_GET['add_cart']))
 	{
-		$pro_id =$row_cart['pro_id'];
-		//$qty_no=$row_cart['qty'];
-		$select_pro_price="select * from products where pid='$pro_id'";
+	
+	$pro_id =$_GET['add_cart'];
+	$qty=1;
+	
+	//$qty_no=0;
+	
+		$select_pro_price="select * from product where pid='$pro_id'";
 		$run_pro_price = mysqli_query($con,$select_pro_price);
 		while($row_pro_price=mysqli_fetch_array($run_pro_price))
 		{
@@ -80,28 +86,27 @@ include("functions/functions.php");
 		$item_price = $row_pro_price['pprice'];
 		$values=array_sum($product_price);
 		$total+=$values;		
-	
+
 	?>
 	
 	<tr align="center" class="row">
 
-	<td>	<br/><br/><input type="checkbox" name="remove[]" value="<?php echo $pro_id;?>"/></td>
+	
 	<td><br/><?php echo $product_name;?><br>
-	<img src="admin_area/product_images/<?php echo $product_image;?>" width="60" height="60"/>
+	<img src="admin_area/product_images/<?php echo $product_image;?>" width="80" height="70"/>
 	</td>
 	<td><br/><br/><input type="text" size="4" name="qty" value="<?php echo $_SESSION['qty'];?>"/></td>
 	<?php
 	
 	global $con;
-	if(isset($_POST['update_cart']))
+	if(isset($_POST['update_cart']) ? $_POST['update_cart'] : "")
 	{
 		$qty= $_POST['qty'];
-		$update_qty ="update cart set qty='$qty'";
-		$run_qty_query=mysqli_query($con,$update_qty);
-		$_SESSION['qty']=$qty;
-	
+		//$update_qty ="update cart set cquantity='$qty'";
+		//$run_qty_query=mysqli_query($con,$update_qty);
 		$total = $total*$qty;
-	
+	    $_SESSION['qty']=$qty;
+		
 	}
 	
 	?>
@@ -117,15 +122,17 @@ include("functions/functions.php");
 	//end of while loops
 	}
 	}
+    $_SESSION['total']=$total;
+	$_SESSION['pname']=$product_name;
 	?>
 	<tr align="right">
-	<td colspan="4"><b>Sub Total:</b></td>
+	<td colspan="4"><b>Total:</b></td>
 	<td> <?php echo "$".$total; ?> </td>
 	</tr>
 	
 	<tr align="center">
+	<td><input type="submit" name="continue" value="Back To Shopping" </td>
 	<td colspan="2"><input type="submit" name="update_cart" value="Update Cart"/></td>
-	<td><input type="submit" name="continue" value="Continue Shopping" </td>
 	<td><button><a href="checkout.php" style="text-decoration:none; color:black;">Checkout</a></button></td>
 	</tr>
 	
@@ -135,48 +142,21 @@ include("functions/functions.php");
 	
 	<?php
 	
-	function updatecartRemove()
-	{
-	global $con;
-	$ip=getIp();
-	
-
-	if(isset($_POST['update_cart']))
-	{
 		
-		foreach($_POST['remove'] as $remove_id)
-		{
-		
-		$delete_cart_query ="delete from cart where pro_id='$remove_id' AND ip_add='$ip'";
-
-		$run_cart_query=mysqli_query($con,$delete_cart_query);
-		if($run_cart_query)
-		{
-		echo "<script>window.open('cart.php','_self')</script>";	
-					
-		}			
-			
-			
-		}
-		
-	}
-	}
-	
 	if(isset($_POST['continue']))
 	{
 		
 	echo "<script>window.open('index.php','_self')</script>";	
 	}
 	
-		echo @$up_cart=updatecartRemove(); //@ when it is not active it won't genrate error
 
 	
 	?>
 		
-	</div>
+	
+</div>
 
 	</div>
-	<!-- Content wrapper ends here -->
 	
 	<?php include("includes/footer.html"); ?>
 	
