@@ -12,6 +12,8 @@ include("functions/functions.php");
 	</head>
 	
 <body>
+
+
 	<!-- Main container starts here -->
 	<div class="main_wrapper">
 	

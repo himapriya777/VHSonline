@@ -1,5 +1,6 @@
 <!DOCTYPE>
 <?php
+session_start();
 include("functions/functions.php");
 ?>
 <html>
@@ -37,7 +38,7 @@ include("functions/functions.php");
 	
 	<div id="content_area"> 
 	
-
+    <h2> Hi </h2>
 
 	</div>
 	<!-- Content wrapper ends here -->

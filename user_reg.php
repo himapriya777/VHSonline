@@ -112,34 +112,40 @@ include("includes/db.php");
  if(isset($_POST['register']))
  {
 	 
-	$uname=$POST['uname']; 
-	$pwd=$POST['pwd'];
-	$fname=$POST['fname']; 
-	$lname=$POST['lname']; 
-	$email=$POST['email']; 
-	$address=$POST['address']; 
+	$uname=$_POST['uname']; 
+	$pwd=$_POST['pwd'];
+	$fname=$_POST['fname']; 
+	$lname=$_POST['lname']; 
+	$email=$_POST['email']; 
+	$address=$_POST['address']; 
+	$utype ="regular";
 	
 	$salt="-45dfeHKyu349@-/klF21-14JkUP/4";
 	$hashedpwd=md5($salt.$pwd);
 	
 	
-	$insert_user="insert into user(uusername,upassword,uemail,ufname,ulname,uaddress,utype) 
-	values('$uname','$hashedpwd','$email,$fname','$lname','$address','regular')";
-	
-	$insert_query=mysqli_query($con,$insert_user);
-	
-	echo $uname;
-	echo $pwd;
-	echo $fname;
-	echo $lname;
-	echo $email;
-	echo $address;
 	
 	
+	$select_user = "select uusername from user where uusername='$uname'";
+	$select_query=mysqli_query($con,$select_user);
+	$count =mysqli_num_rows($select_query);
+
+	
+	if($count>=1)
+	{
+		echo "<script>alert('User name already exist please try with new name')</script>";
+		echo "<script>window.open('user_reg.php','_self')</script>";
+	}
+	else
+	{
 	if($_SESSION['check_reg_user']==1)
 	{
 		
 		$_SESSION['user_name']=$uname;
+		$insert_user="insert into user(uid,uusername,upassword,uemail,ufname,ulname,uaddress,utype) 
+	values('','$uname','$hashedpwd','$email','$fname','$lname','$address','$utype')";
+	
+	$insert_query=mysqli_query($con,$insert_user);
 		echo "<script>alert('Account has been created successfully')</script>";
 		echo "<script>window.open('checkout.php','_self')</script>";
 		
@@ -147,10 +153,14 @@ include("includes/db.php");
 	else
 	{
 		$_SESSION['user_name']=$uname;
+		$insert_user="insert into user(uid,uusername,upassword,uemail,ufname,ulname,uaddress,utype) 
+	values('','$uname','$hashedpwd','$email','$fname','$lname','$address','$utype')";
+	
+	    $insert_query=mysqli_query($con,$insert_user);
 		echo "<script>alert('Account has been created successfully')</script>";
 		echo "<script>window.open('my_account.php','_self')</script>";
 		
 	}
-	 
+	} 
  }
  ?>
