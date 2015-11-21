@@ -1,8 +1,0 @@
-The interface lead will access the Web server and create a login page and a simple menu
-with the sections of your website. One option of the menu should be repots and should
-include the names of the reports required in your project. You do not need to implement the
-reports, just include the link. The information for the login page will be hardcoded. You
-should be able to login as an admin with the credentials id: admin, pwd: admin1 and as a
-regular user with credentials id: user, pwd:user1. The menu for admin will be different from
-the menu for user, admins will have an option to “add users”. You don’t need to implement
-the “add users” option.
