@@ -37,7 +37,7 @@ include("includes/db.php");
 		$salt="-45dfeHKyu349@-/klF21-14JkUP/4";
 	    $hashedpwd=md5($salt.$pwd);
 		
-		$select_user = "select * from user where uusername='$username' and upassword='$pwd'";
+		$select_user = "select * from user where uusername='$username' and upassword='$hashedpwd'";
 		
 		$run_user=mysqli_query($con,$select_user);
 		$check_user =mysqli_num_rows($run_user);

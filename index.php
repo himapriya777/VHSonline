@@ -60,7 +60,7 @@ include("functions/functions.php");
 	</span>
 	
 	</div>
-	<?php cart(); ?>
+	<!-- <?php cart(); ?> -->
 		<div id="products_box">
 		<?php getPro(); ?>
 	</div>

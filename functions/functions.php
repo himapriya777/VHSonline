@@ -168,6 +168,7 @@ function get_searchProducts()
 	}
 }
 
+
 // To get user ip
 function getIp() {
     $ip = $_SERVER['REMOTE_ADDR'];
@@ -194,7 +195,7 @@ function cart()
 	
 	//check and allow one product type use can add once
 
-	$check_pro = "select * from cart";
+	$check_pro = "select * from cart where ip_add='$ip' AND pro_id='$pro_id'";
 		
 	$run_check = mysqli_query($con,$check_pro);
 	$count =mysqli_num_rows($run_check);
@@ -205,10 +206,10 @@ function cart()
 	else
 	{   
 		
-		$insert_pro = "insert into cart(pid,cquantity) values('$pro_id','1')";
+		$insert_pro = "insert into cart(pro_id,ip_add,qty) values('$pro_id','$ip','1')";
 		$run_pro = mysqli_query($con,$insert_pro);
 		
-		echo "<script>window.open('cart.php','_self')</script>";
+		echo "<script>window.open('index.php','_self')</script>";
 	}
 }
 }
@@ -222,7 +223,7 @@ function total_items()
 	{
 		global $con;
 		$ip=getIp();
-		$get_items ="select * from cart";
+		$get_items ="select * from cart where ip_add='$ip'";
 		
 		$run_items=mysqli_query($con,$get_items);
 		$count_items=mysqli_num_rows($run_items);
@@ -232,7 +233,7 @@ function total_items()
 	else{ //if home page clicked after add to cart still need t be updated
 		global $con;
 		$ip=getIp();
-		$get_items ="select * from cart";
+		$get_items ="select * from cart where ip_add='$ip'";
 		
 		$run_items=mysqli_query($con,$get_items);
 		$count_items=mysqli_num_rows($run_items);
@@ -248,19 +249,19 @@ function total_price()
 	global $con;
 	$ip=getIp();
 	$total=0;
-	$select_cart_query ="select * from cart";
+	$select_cart_query ="select * from cart where ip_add='$ip'";
 	
 	$run_cart_query=mysqli_query($con,$select_cart_query);
 	
 	while($row_cart=mysqli_fetch_array($run_cart_query))
 	{
-		$pro_id =$row_cart['pid'];
+		$pro_id =$row_cart['pro_id'];
 		
-		$select_pro_price="select * from product where pid='$pro_id'";
+		$select_pro_price="select * from products where product_id='$pro_id'";
 		$run_pro_price = mysqli_query($con,$select_pro_price);
 		while($row_pro_price=mysqli_fetch_array($run_pro_price))
 		{
-		$product_price =array($row_pro_price['pprice']);
+		$product_price =array($row_pro_price['product_price']);
 		$values=array_sum($product_price);
 		$total+=$values;		
 		}
@@ -268,5 +269,9 @@ function total_price()
 	
 	echo $total;
 }
+
+
+
+
 
 ?>

@@ -49,7 +49,7 @@ include("includes/db.php");
 	</span>
 	
 	</div>
-	<?php cart(); ?>
+	<!-- 	<?php cart(); ?> -->
 	<form action="user_reg.php" method="post" enctype="multipart/form-data">
      <table align="center" width="750">
 	 <tr align="center">
@@ -123,29 +123,33 @@ include("includes/db.php");
 	$hashedpwd=md5($salt.$pwd);
 	
 	
-	
 	$insert_user="insert into user(uusername,upassword,uemail,ufname,ulname,uaddress,utype) 
-	values('$uname','$hashedpwd','$email','$fname','$lname','$address','regular')";
+	values('$uname','$hashedpwd','$email,$fname','$lname','$address','regular')";
 	
 	$insert_query=mysqli_query($con,$insert_user);
 	
-	$sel_cart ="select uid from cart where uid in 
-	(select uid from user where uusername='$uname')";
+	echo $uname;
+	echo $pwd;
+	echo $fname;
+	echo $lname;
+	echo $email;
+	echo $address;
 	
-	$run_cart = mysqli_query($con,$sel_cart);
-	$check_cart=mysqli_num_rows($run_cart);
 	
-	if($check_cart==0)
+	if($_SESSION['check_reg_user']==1)
 	{
+		
 		$_SESSION['user_name']=$uname;
 		echo "<script>alert('Account has been created successfully')</script>";
-		echo "<script>window.open('my_account.php','_self')</script>";
+		echo "<script>window.open('checkout.php','_self')</script>";
+		
 	}
 	else
 	{
 		$_SESSION['user_name']=$uname;
 		echo "<script>alert('Account has been created successfully')</script>";
-		echo "<script>window.open('checkout.php','_self')</script>";
+		echo "<script>window.open('my_account.php','_self')</script>";
+		
 	}
 	 
  }

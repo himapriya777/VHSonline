@@ -49,22 +49,11 @@ include("includes/db.php");
 	</span>
 	
 	</div>
-<!-- 	<?php cart(); ?> -->
-		<div id="products_box">
-	<?php 
 	
-	 if(!isset($_SESSION['user_name']))
-		{
-			$_SESSION['check_reg_user']=1;
-			include("login.php");
-			
-		}
-		else
-		{
-			include("payment.php");
-		}
-	?>
-		
+		<h2> Welcome <?php echo $_SESSION['user_name'];?></h2>
+<h3> Your Payment was successful, please go to your account</h3>
+<h3><a href="my_account.php">Go to you account</a></h3>
+
 	</div>
 
 	</div>

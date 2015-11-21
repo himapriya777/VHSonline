@@ -95,7 +95,11 @@ include("functions/functions.php");
 	<td><br/><?php echo $product_name;?><br>
 	<img src="admin_area/product_images/<?php echo $product_image;?>" width="80" height="70"/>
 	</td>
-	<td><br/><br/><input type="text" size="4" name="qty" value="<?php echo $_SESSION['qty'];?>"/></td>
+	<td><br/><br/>
+	<input type="text" size="4" name="qty" value="<?php if (isset($_POST['qty'])) { echo $_POST['qty']; } else { echo $qty;}  ?>"/>
+	</td>
+
+	<!-- <input type="text" size="4" name="qty" value="<?php echo $_SESSION['qty']; ?>"/></td> -->
 	<?php
 	
 	global $con;
@@ -105,7 +109,6 @@ include("functions/functions.php");
 		//$update_qty ="update cart set cquantity='$qty'";
 		//$run_qty_query=mysqli_query($con,$update_qty);
 		$total = $total*$qty;
-	    $_SESSION['qty']=$qty;
 		
 	}
 	
@@ -122,8 +125,9 @@ include("functions/functions.php");
 	//end of while loops
 	}
 	}
-    $_SESSION['total']=$total;
+    $_SESSION['item_price']=$item_price;
 	$_SESSION['pname']=$product_name;
+	$_SESSION['qty']=$qty;
 	?>
 	<tr align="right">
 	<td colspan="4"><b>Total:</b></td>
