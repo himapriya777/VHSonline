@@ -101,7 +101,8 @@ include("../includes/db.php");
 		$product_img_tmp=$_FILES['product_img']['tmp_name'];
 		move_uploaded_file($product_img_tmp,"product_images/$product_img");
 		
-		$insert_products="insert into product(pname,pdescription,pstock,psaleprice,pprice,pimage,pkeyword) values('$product_name','$product_desc','$product_stock','$product_sprice','$product_price','$product_img','$product_keywords')";
+		$insert_products="insert into product(pname,pdescription,pstock,psaleprice,pprice,pimage,pkeyword) 
+		values('$product_name','$product_desc','$product_stock','$product_sprice','$product_price','$product_img','$product_keywords')";
 	    
 		
 		$insert_prod=mysqli_query($con,$insert_products);

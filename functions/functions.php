@@ -169,6 +169,48 @@ function get_searchProducts()
 }
 
 
+// get events
+
+function getEvents()
+{  	global $con;
+
+   date_default_timezone_set("America/Denver");
+   //echo date_default_timezone_get();
+	$today = date("m/d/y");
+	//echo $today;
+	$get_pro = "select * from event WHERE eedate >='$today'"; // to show random 6 on main page
+	$run_pro = mysqli_query($con, $get_pro);
+	
+	while($row_pro=mysqli_fetch_array($run_pro))
+	{
+	$event_id = $row_pro['eid'];
+    //$pro_cat = $row_pro['pcat'];
+	$event_name= $row_pro['ename'];
+	$event_desc= $row_pro['edescription'];
+	$event_image = $row_pro['eimage'];
+	$event_price = $row_pro['eprice'];
+	$event_loc = $row_pro['elocation'];
+	$event_cap = $row_pro['ecapacity'];
+	$event_sdate = $row_pro['esdate'];
+	$event_edate = $row_pro['eedate'];
+	
+	echo "
+		<div id='single_product'>
+		<h4> $event_name </h4>
+		<img src='admin_area/event_images/$event_image' width='180' height='180'/>
+		<p><b>Price $$event_price</b></p>
+		<p><b>Event Start Date $event_sdate</b></p>
+		<p><b>Event End Date $event_edate</b></p>
+		<a href='event_details.php?event_id=$event_id' style='float:left;'>View Details</a>
+		<a href='event_cart.php?add_event=$event_id'><button style='float:right;'>Register</button></a>
+		</div>
+
+	";
+	}
+
+	
+}
+
 // To get user ip
 function getIp() {
     $ip = $_SERVER['REMOTE_ADDR'];

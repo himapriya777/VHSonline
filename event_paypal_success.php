@@ -4,6 +4,7 @@ session_start();
 include("functions/functions.php");
 include("includes/db.php");
 ?>
+
 <html>
 	<head>
 		<title> VHS Online Store</title>
@@ -27,12 +28,7 @@ include("includes/db.php");
 	
 	<div id="sidebar"> 
 	
-	<div id="sidebar_title">Categories</div>
 	
-	<ul id="cats">
-	<?php getCats(); ?>
-	
-	</ul>
 	
 	
 	</div>
@@ -49,23 +45,19 @@ include("includes/db.php");
 	</span>
 	
 	</div>
-<!-- 	<?php cart(); ?> -->
-		<div id="products_box">
-	<?php 
 	
-	 if(!isset($_SESSION['user_name']))
-		{
-			$_SESSION['check_reg_user']=1;
-			include("login.php");
-			
-		}
-		else
-		{
-			include("payment.php");
-		}
 		
-	?>
-		
+    <?php
+
+ $item_price=$_SESSION['item_price'];
+ $product_name=$_SESSION['ename'];
+ $qty=$_SESSION['qty'];
+ 
+ $total_price = $qty*$item_price;
+
+ echo "<h3> Your Payment was successful, Thank you for registering the event.</h3>
+
+?>
 	</div>
 
 	</div>

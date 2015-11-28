@@ -25,13 +25,8 @@ include("functions/functions.php");
 	
 	<div id="sidebar"> 
 	
-	<div id="sidebar_title">Categories</div>
 	
-	<ul id="cats">
-	<?php getCats(); ?>
-	
-	</ul>
-	
+		
 	
 	</div>
 	
@@ -54,69 +49,50 @@ include("functions/functions.php");
 		
 		<table align="center" width="700" bgcolor="lightyellow" height="300">
 		<tr align="center">
-		<th colspan=4><h2>Checkout</h2>
+		<th colspan=4><h2>Register For an Event</h2>
 		</th>
 		</tr>
 		
 		<tr>
-		<th> Products</th>
-		<th>Quantity </th>
+		<th> Event Name</th>
 		<th>Price</th>
-		
 		</tr>
 		
 	<?php 
 	global $con;
 	$total=0;
-	if(isset($_GET['add_cart']))
+	if(isset($_GET['add_event']))
 	{
 	
-	$pro_id =$_GET['add_cart'];
-	$qty=1;
+	$event_id =$_GET['add_event'];
 	
 	//$qty_no=0;
 	
-		$select_pro_price="select * from product where pid='$pro_id'";
+		$select_pro_price="select * from event where eid='$event_id'";
 		$run_pro_price = mysqli_query($con,$select_pro_price);
 		while($row_pro_price=mysqli_fetch_array($run_pro_price))
 		{
-		$product_price =array($row_pro_price['pprice']);
-		$product_name=$row_pro_price['pname'];
-		$product_image=$row_pro_price['pimage'];
-		$item_price = $row_pro_price['pprice'];
-		$values=array_sum($product_price);
+		$event_price =array($row_pro_price['eprice']);
+		$event_name=$row_pro_price['ename'];
+		$event_image=$row_pro_price['eimage'];
+		$item_price = $row_pro_price['eprice'];
+		$values=array_sum($event_price);
 		$total+=$values;		
 
 	?>
 	
 	<tr align="center" class="row">
-
-	
-	<td><br/><?php echo $product_name;?><br>
-	<img src="admin_area/product_images/<?php echo $product_image;?>" width="80" height="70"/>
+	<td><br/><?php echo $event_name;?><br>
+	<img src="admin_area/event_images/<?php echo $event_image;?>" width="80" height="70"/>
 	</td>
-	<td><br/><br/>
-	<input type="text" size="4" name="qty" value="<?php if (isset($_POST['qty'])) { echo $_POST['qty']; } else { echo $qty;}  ?>"/>
-	</td>
-
-	<!-- <input type="text" size="4" name="qty" value="<?php echo $_SESSION['qty']; ?>"/></td> -->
 	<?php
 	
-	global $con;
-	if(isset($_POST['update_cart']) ? $_POST['update_cart'] : "")
-	{
-		$qty= $_POST['qty'];
-		//$update_qty ="update cart set cquantity='$qty'";
-		//$run_qty_query=mysqli_query($con,$update_qty);
-		$total = $total*$qty;
-		
-	}
 	
 	?>
 	
 	
 	
-	<td><br/><br/><?php echo "$".$item_price;?></td>
+	<td><br/><br/><?php echo "$<b>".$item_price;"/b"?></td>
 	
 	</tr>
 	
@@ -127,18 +103,14 @@ include("functions/functions.php");
 	}
 	
     $_SESSION['item_price']=$item_price;
-	$_SESSION['pname']=$product_name;
-	$_SESSION['qty']=$qty;
+	$_SESSION['ename']=$event_name;
+	$_SESSION['qty']=1;
 	?>
-	<tr align="right">
-	<td colspan="4"><b>Total:</b></td>
-	<td> <?php echo "$".$total; ?> </td>
-	</tr>
+	
 	
 	<tr align="center">
-	<td><input type="submit" name="continue" value="Back To Shopping" </td>
-	<td colspan="2"><input type="submit" name="update_cart" value="Update Cart"/></td>
-	<td><button><a href="checkout.php" style="text-decoration:none; color:black;">Checkout</a></button></td>
+	<td><input type="submit" name="continue" value="Back To View Events" </td>
+	<td><button><a href="event_checkout.php" style="text-decoration:none; color:black;">Pay Now to Register</a></button></td>
 	</tr>
 	
 		</table>
@@ -151,7 +123,7 @@ include("functions/functions.php");
 	if(isset($_POST['continue']))
 	{
 		
-	echo "<script>window.open('index.php','_self')</script>";	
+	echo "<script>window.open('event.php','_self')</script>";	
 	}
 	
 

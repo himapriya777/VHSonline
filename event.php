@@ -2,7 +2,6 @@
 <?php
 session_start();
 include("functions/functions.php");
-include("includes/db.php");
 ?>
 <html>
 	<head>
@@ -13,6 +12,8 @@ include("includes/db.php");
 	</head>
 	
 <body>
+
+
 	<!-- Main container starts here -->
 	<div class="main_wrapper">
 	
@@ -27,13 +28,7 @@ include("includes/db.php");
 	
 	<div id="sidebar"> 
 	
-	<div id="sidebar_title">Categories</div>
-	
-	<ul id="cats">
-	<?php getCats(); ?>
-	
-	</ul>
-	
+		
 	
 	</div>
 	
@@ -41,31 +36,29 @@ include("includes/db.php");
 	<div id="shopping_cart"> 
 	
 	<span style="float:right; font-size:18px;padding:5px;line-height:25px">
-	<!--Welcome Guest! &nbsp&nbsp
-	 <b style="color:yellow">Shopping Cart -</b> 
+	
+	<!-- <b style="color:yellow">Shopping Cart -</b> 
 	Total Items: <?php total_items();?>&nbsp&nbsp
 	Total Price: $<?php total_price();?> &nbsp&nbsp 
 	<a href="cart.php" style="color:yellow">Go to Cart</a>-->
+	<?php
+	if(!isset($_SESSION['user_name']))
+	{
+	echo "Welcome Guest! &nbsp&nbsp";
+	echo "<a href='checkout.php' style='color:yellow'><b>Login</b></a>";	
+	}
+	else
+	{   $uname=$_SESSION['user_name'];
+		echo "Welcome $uname &nbsp&nbsp";
+		echo "<a href='logout.php' style='color:yellow'><b>Logout</b></a>";	
+	}
+	?>
 	</span>
 	
 	</div>
-<!-- 	<?php cart(); ?> -->
+	<!-- <?php cart(); ?> -->
 		<div id="products_box">
-	<?php 
-	
-	 if(!isset($_SESSION['user_name']))
-		{
-			$_SESSION['check_reg_user']=1;
-			include("login.php");
-			
-		}
-		else
-		{
-			include("payment.php");
-		}
-		
-	?>
-		
+		<?php getEvents(); ?>
 	</div>
 
 	</div>

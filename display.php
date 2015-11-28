@@ -4,12 +4,12 @@
 
 	<?php
 				//CONNECT TO DATABASE USING PHP
-			$con=mysqli_connect("localhost","root", "", "test_image");
+			$con=mysqli_connect("localhost","root", "", "cs4342team8fa15");
 			if(!$con){
 				die('Could not connect: ' . mysqli_error());
 			}    			
 			
-			$sql = "SELECT image FROM test_image WHERE id = 9";
+			$sql = "SELECT image FROM test_image WHERE id = 1";
 			$res = mysqli_query($con, $sql);
 			$row = mysqli_fetch_assoc($res);
 			$data = $row['image'];

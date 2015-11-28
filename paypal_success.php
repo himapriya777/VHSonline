@@ -4,6 +4,7 @@ session_start();
 include("functions/functions.php");
 include("includes/db.php");
 ?>
+
 <html>
 	<head>
 		<title> VHS Online Store</title>
@@ -27,12 +28,7 @@ include("includes/db.php");
 	
 	<div id="sidebar"> 
 	
-	<div id="sidebar_title">Categories</div>
 	
-	<ul id="cats">
-	<?php getCats(); ?>
-	
-	</ul>
 	
 	
 	</div>
@@ -50,10 +46,42 @@ include("includes/db.php");
 	
 	</div>
 	
-		<h2> Welcome <?php echo $_SESSION['user_name'];?></h2>
-<h3> Your Payment was successful, please go to your account</h3>
-<h3><a href="my_account.php">Go to you account</a></h3>
+		
+    <?php
 
+ $item_price=$_SESSION['item_price'];
+ $product_name=$_SESSION['pname'];
+ $qty=$_SESSION['qty'];
+ 
+ $total_price = $qty*$item_price;
+ //echo $total_price;
+
+
+$user = $_SESSION['user_name'];
+
+$get_user = "select * from user where uusername='$user'";
+$run_user= mysqli_query($con,$get_user);
+$row_user = mysqli_fetch_array($run_user);
+$uid=$row_user['uid'];
+
+// payment details from paypal
+/*
+ $price =$_GET['amt'];
+ $currency =$_GET['cc'];
+ $trx = $_GET['tx'];
+ 
+ if($item_price==$price)
+ {
+	 echo "<h3> Your Payment was successful, please go to your account</h3>
+<h3><a href='my_account.php'>Go to you account</a></h3>";
+ }
+ else
+ {
+	 echo "You are having problem with payment";
+ }*/
+ echo "<h3> Your Payment was successful, please go to your account</h3>
+<h3><a href='my_account.php'>Go to you account</a></h3>";
+?>
 	</div>
 
 	</div>
