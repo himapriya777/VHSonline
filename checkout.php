@@ -61,7 +61,7 @@ include("includes/db.php");
 		}
 		else
 		{
-			include("payment.php");
+			echo "<script>window.open('payment.php','_self')</script>";
 		}
 		
 	?>

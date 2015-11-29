@@ -129,6 +129,7 @@ include("functions/functions.php");
     $_SESSION['item_price']=$item_price;
 	$_SESSION['pname']=$product_name;
 	$_SESSION['qty']=$qty;
+	$_SESSION['p_id']=$pro_id;
 	?>
 	<tr align="right">
 	<td colspan="4"><b>Total:</b></td>

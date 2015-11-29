@@ -47,11 +47,19 @@ include("includes/db.php");
 		}
 		else
 		{
+		if(!isset($_SESSION['p_id']))
+		{
+			$_SESSION['user_name']=$username;
+			echo "<script>alert('You logged in successfully')</script>";
+		    echo "<script>window.open('my_account.php','_self')</script>";
+		}
+		else
+		{
 			
 			$_SESSION['user_name']=$username;
 			echo "<script>alert('You logged in successfully')</script>";
-		    echo "<script>window.open('checkout.php','_self')</script>";
-			
+		    echo "<script>window.open('payment.php','_self')</script>";
+		}
 		}
 	}
 		?>

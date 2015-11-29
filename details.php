@@ -62,7 +62,7 @@ include("functions/functions.php");
 			<h3> $pro_name </h3>
 			<img src='admin_area/product_images/$pro_image' width='400' height='300'/>
 			<p style='color:006633'><b>Sale Price $$pro_price</b></p>
-	     	<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
+	     	<p style='color:red'>Actual Price $$pro_hprice</p>
 			<p>$pro_desc</p>
 			<a href='index.php' style='float:left;'>Go Back</a>
 			<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>

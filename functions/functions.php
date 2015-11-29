@@ -45,7 +45,7 @@ function getPro()
 		<h4> $pro_name </h4>
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
 		<p style='color:006633'><b>Sale Price $$pro_price</b></p>
-		<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
+		<p style='color:red'>Actual Price $$pro_hprice</p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
 		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
@@ -85,7 +85,7 @@ function getPro()
 		<h3> $pro_name </h3>
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
 		<p style='color:006633'><b>Sale Price $$pro_price</b></p>
-		<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
+		<p style='color:red'>Actual Price $$pro_hprice</p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
 		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
@@ -120,7 +120,7 @@ function get_Allproducts()
 		<h3> $pro_name </h3>
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
 		<p style='color:006633'><b>Sale Price $$pro_price</b></p>
-		<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
+		<p style='color:red'>Actual Price $$pro_hprice</p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
 		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
@@ -167,7 +167,7 @@ function get_searchProducts()
 		<h3> $pro_name </h3>
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
 		<p style='color:006633'><b>Sale Price $$pro_price</b></p>
-		<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
+		<p style='color:red'>Actual Price $$pro_hprice</p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
 		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>

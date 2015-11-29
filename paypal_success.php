@@ -49,14 +49,7 @@ include("includes/db.php");
 		
     <?php
 
- $item_price=$_SESSION['item_price'];
- $product_name=$_SESSION['pname'];
- $qty=$_SESSION['qty'];
- 
- $total_price = $qty*$item_price;
- //echo $total_price;
-
-
+/*
 $user = $_SESSION['user_name'];
 
 $get_user = "select * from user where uusername='$user'";
@@ -65,7 +58,7 @@ $row_user = mysqli_fetch_array($run_user);
 $uid=$row_user['uid'];
 
 // payment details from paypal
-/*
+
  $price =$_GET['amt'];
  $currency =$_GET['cc'];
  $trx = $_GET['tx'];
