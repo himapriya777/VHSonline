@@ -12,7 +12,7 @@ include("../includes/db.php");
 <body bgcolor="skyblue">
 
 	<form action="insert_event.php" method="post" enctype="multipart/form-data">
-		<table align="center" width="750" bgcolor=pink>
+		<table align="center" width="795" bgcolor=FFFFCC>
 		<tr align="center">
 			<td colspan="7"><h2> Add New Event Here</h2></td>
 		</tr>
@@ -99,7 +99,7 @@ include("../includes/db.php");
 		if($insert_event)
 		{
 			echo "<script>alert('New event added successfully')</script>";
-			echo "<script>window.open('insert_event.php','_self')</script>";
+			echo "<script>window.open('admin_index.php?view_event','_self')</script>";
 			
 		}
 		

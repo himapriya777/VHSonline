@@ -37,7 +37,7 @@ include("includes/db.php");
 		$salt="-45dfeHKyu349@-/klF21-14JkUP/4";
 	    $hashedpwd=md5($salt.$pwd);
 		
-		$select_user = "select * from user where uusername='$username' and upassword='$hashedpwd'";
+		$select_user = "select * from user where uusername='$username' and upassword='$hashedpwd' and utype='regular'";
 		
 		$run_user=mysqli_query($con,$select_user);
 		$check_user =mysqli_num_rows($run_user);
@@ -47,9 +47,11 @@ include("includes/db.php");
 		}
 		else
 		{
+			
 			$_SESSION['user_name']=$username;
 			echo "<script>alert('You logged in successfully')</script>";
-		echo "<script>window.open('checkout.php','_self')</script>";
+		    echo "<script>window.open('checkout.php','_self')</script>";
+			
 		}
 	}
 		?>

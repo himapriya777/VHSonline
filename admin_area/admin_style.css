@@ -1,0 +1,50 @@
+
+
+body{background:skyblue;}
+
+
+.main_wrapper{
+width:1000px;
+height:auto;
+margin:auto;
+}
+
+#header{
+width:1000px;
+height: 100px;
+background-image:url(admin_header.jpg);
+border-bottom:5px groove orange;
+}
+
+
+#left{
+width:790px;
+height: 500px;
+background-image:url(admin_body.jpg);
+float:left;
+}
+
+
+#right{
+width:200px;
+height: 600px;
+float:right;
+border-left:5px groove orange;
+background:#187eae;
+}
+
+#right a{
+text-decoration:none;
+color:white;
+text-align:left;
+font-size:18px;
+font-family:Platino;
+padding:6px;
+margin:6px;
+display:block;
+}
+
+#right a:hover{
+color:#ffc90e;
+font-weight:bolder;
+}
