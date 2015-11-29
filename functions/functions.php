@@ -35,14 +35,17 @@ function getPro()
 	$pro_id = $row_pro['pid'];
     //$pro_cat = $row_pro['pcat'];
 	$pro_name= $row_pro['pname'];
-	$pro_price = $row_pro['pprice'];
+	$pro_hprice = $row_pro['pprice'];
+	$pro_price = $row_pro['psaleprice'];
+
 	$pro_image = $row_pro['pimage'];
 	$pro_name = ucwords($pro_name);
 	echo "
 		<div id='single_product'>
 		<h4> $pro_name </h4>
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
-		<p><b>Price $$pro_price</b></p>
+		<p style='color:006633'><b>Sale Price $$pro_price</b></p>
+		<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
 		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
@@ -71,7 +74,8 @@ function getPro()
 	$pro_id = $row_cat_pro['pid'];
     //$pro_cat = $row_cat_pro['pcat'];
 	$pro_name= $row_cat_pro['pname'];
-	$pro_price = $row_cat_pro['pprice'];
+	$pro_hprice = $row_cat_pro['pprice'];
+	$pro_price = $row_cat_pro['psaleprice'];
 	$pro_image = $row_cat_pro['pimage'];
 	$pro_name = ucwords($pro_name);
 	
@@ -80,7 +84,8 @@ function getPro()
 		<div id='single_product'>
 		<h3> $pro_name </h3>
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
-		<p><b>Price $$pro_price</b></p>
+		<p style='color:006633'><b>Sale Price $$pro_price</b></p>
+		<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
 		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
@@ -106,14 +111,16 @@ function get_Allproducts()
 	$pro_id = $row_pro['pid'];
     //$pro_cat = $row_pro['product_cat'];
 	$pro_name= $row_pro['pname'];
-	$pro_price = $row_pro['pprice'];
+	$pro_hprice = $row_pro['pprice'];
+	$pro_price = $row_pro['psaleprice'];
 	$pro_image = $row_pro['pimage'];
 	$pro_name = ucwords($pro_name);
 	echo "
 		<div id='single_product'>
 		<h3> $pro_name </h3>
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
-		<p><b>Price $$pro_price</b></p>
+		<p style='color:006633'><b>Sale Price $$pro_price</b></p>
+		<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
 		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>
@@ -151,14 +158,16 @@ function get_searchProducts()
 	$pro_id = $row_pro['pid'];
     //$pro_cat = $row_pro['product_cat'];
 	$pro_name= $row_pro['pname'];
-	$pro_price = $row_pro['pprice'];
+	$pro_hprice = $row_pro['pprice'];
+	$pro_price = $row_pro['psaleprice'];
 	$pro_image = $row_pro['pimage'];
 	$pro_name = ucwords($pro_name);
 	echo "
 		<div id='single_product'>
 		<h3> $pro_name </h3>
 		<img src='admin_area/product_images/$pro_image' width='180' height='180'/>
-		<p><b>Price $$pro_price</b></p>
+		<p style='color:006633'><b>Sale Price $$pro_price</b></p>
+		<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
 		<a href='details.php?pro_id=$pro_id' style='float:left;'>View Details</a>
 		<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>
 		</div>

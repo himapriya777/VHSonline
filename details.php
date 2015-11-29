@@ -52,7 +52,8 @@ include("functions/functions.php");
 			{
 			$pro_id = $row_pro['pid'];
 			$pro_name= $row_pro['pname'];
-			$pro_price = $row_pro['pprice'];
+			$pro_hprice = $row_pro['pprice'];
+	        $pro_price = $row_pro['psaleprice'];
 			$pro_image = $row_pro['pimage'];
 			$pro_name = ucwords($pro_name);
 			$pro_desc =$row_pro['pdescription'];
@@ -60,7 +61,8 @@ include("functions/functions.php");
 			<div id='single_product'>
 			<h3> $pro_name </h3>
 			<img src='admin_area/product_images/$pro_image' width='400' height='300'/>
-			<p><b>Price $$pro_price</b></p>
+			<p style='color:006633'><b>Sale Price $$pro_price</b></p>
+	     	<p style='color:red'><b>Actual Price $$pro_hprice</b></p>
 			<p>$pro_desc</p>
 			<a href='index.php' style='float:left;'>Go Back</a>
 			<a href='cart.php?add_cart=$pro_id'><button style='float:right;'>Add to Cart</button></a>

@@ -80,10 +80,10 @@ include("functions/functions.php");
 		$run_pro_price = mysqli_query($con,$select_pro_price);
 		while($row_pro_price=mysqli_fetch_array($run_pro_price))
 		{
-		$product_price =array($row_pro_price['pprice']);
+		$product_price =array($row_pro_price['psaleprice']);
 		$product_name=$row_pro_price['pname'];
 		$product_image=$row_pro_price['pimage'];
-		$item_price = $row_pro_price['pprice'];
+		$item_price = $row_pro_price['psaleprice'];
 		$values=array_sum($product_price);
 		$total+=$values;		
 
