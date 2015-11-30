@@ -29,7 +29,6 @@ else
 <div id="right">
 
 <a href="admin_index.php?add_product">Add New Product</a>
-<a href="admin_index.php?view_product">View All Products </a>
 <a href="admin_index.php?edit_product">Edit Product </a>
 
 <?php
@@ -41,7 +40,6 @@ echo "<a href='admin_index.php?delete_product'>Delete Product </a>";
 <hr>
 
 <a href="admin_index.php?add_event">Add New Event</a>
-<a href="admin_index.php?view_event">View All Events</a>
 <a href="admin_index.php?edit_event">Edit Event </a>
 <?php
 if($_SESSION['admin_type']=='madmin')
@@ -49,8 +47,17 @@ if($_SESSION['admin_type']=='madmin')
 echo "<a href='admin_index.php?delete_event'>Delete Event </a>";
 echo "<hr>";
 echo "<a href='admin_index.php?add_admin'>Add New Admin User</a>";
-echo "<a href='admin_index.php?view_admin'>View All Admin Users</a>";
 echo "<a href='admin_index.php?delete_admin'>Delete Admin User</a>";
+
+}
+?>
+<hr>
+<a href="admin_index.php?view_product">View All Products </a>
+<a href="admin_index.php?view_event">View All Events</a>
+<?php
+if($_SESSION['admin_type']=='madmin')
+{
+echo "<a href='admin_index.php?view_admin'>View All Admin Users</a>";
 
 }
 ?>
