@@ -28,7 +28,7 @@
 
 <?php
 include("../includes/db.php");
-$get_pro ="select * from user where utype='admin'";
+$get_pro ="select * from admins";
 $run_pro =mysqli_query($con,$get_pro);
 $i=0;
 while($row_pro=mysqli_fetch_array($run_pro))

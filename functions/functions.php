@@ -187,7 +187,7 @@ function getEvents()
    //echo date_default_timezone_get();
 	$today = date("m/d/y");
 	//echo $today;
-	$get_pro = "select * from event WHERE eedate >='$today'"; // to show random 6 on main page
+	$get_pro = "select * from event WHERE eedate >='$today'"; // to show events greater than today main page
 	$run_pro = mysqli_query($con, $get_pro);
 	
 	while($row_pro=mysqli_fetch_array($run_pro))

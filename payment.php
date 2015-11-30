@@ -70,7 +70,7 @@ include("functions/functions.php");
 <input type="hidden" name="quantity" value="<?php echo $_SESSION['qty'];?>">
 <input type="hidden" name="currency_code" value="USD">
 
-<input type="hidden" name="return" value="http://cs4342.cs.utep.edu/team8/paypal_success.php">
+<input type="hidden" name="return" value="http://192.168.1.74/vhsv3/paypal_success.php">
 <input type="hidden" name="cancel_return" value="http://www.vhsonline/paypal_cancel.php">
 
 <!-- Display the payment button. -->
