@@ -50,6 +50,11 @@ include("includes/db.php");
     <?php
 
 /*
+$get_user = "select uid from user where uusername='$user'";
+$run_user= mysqli_query($con,$get_user);
+$row_user = mysqli_fetch_array($run_user);
+$uid=$row_user['uid'];
+
 $user = $_SESSION['user_name'];
 
 $get_user = "select * from user where uusername='$user'";

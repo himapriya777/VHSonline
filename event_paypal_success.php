@@ -48,13 +48,13 @@ include("includes/db.php");
 	
 		
     <?php
-
+/*
  $item_price=$_SESSION['item_price'];
  $product_name=$_SESSION['ename'];
  $qty=$_SESSION['qty'];
  
  $total_price = $qty*$item_price;
-
+*/
  echo "<h3> Your Payment was successful, Thank you for registering the event.</h3>
 
 ?>
